@@ -53,7 +53,7 @@ public class Bird : MonoBehaviour
         
         if (_previousFramePositionY > transform.position.y)
         {
-            _rigidbody2D.MoveRotation(-20f);
+            _rigidbody2D.MoveRotation(-90f);
         }
         else
         {
@@ -87,6 +87,7 @@ public class Bird : MonoBehaviour
     {
         while (true)
         {
+            if (_game.CurrentState == GameState.Ended) yield break;
             Animate();
             yield return new WaitForSeconds(.15f);
         }

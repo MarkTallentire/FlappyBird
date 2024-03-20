@@ -19,6 +19,7 @@ public class Bird : MonoBehaviour
 
     private float _previousFramePositionY;
 
+    private Game _game;
 
     private bool _isStarted = false;
 
@@ -27,6 +28,8 @@ public class Bird : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _previousFramePositionY = 0;
+
+        _game = FindObjectOfType<Game>();
         
         StartCoroutine(AnimationTimer());
     }
@@ -34,6 +37,9 @@ public class Bird : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_game.CurrentState != GameState.Running)
+            return;
+
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             _isStarted = true;
